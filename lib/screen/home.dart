@@ -18,6 +18,14 @@ class _Home extends State<Home> {
 
   bool isLoading = false;
 
+  Future _loadData() async {
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() {
+      items.addAll(['item 1']);
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold();
