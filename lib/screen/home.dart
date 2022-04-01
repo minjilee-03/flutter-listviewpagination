@@ -18,7 +18,7 @@ class _Home extends State<Home> {
 
   bool _isLoading = false;
 
-  Future _loadData() async {
+  _loadData() async {
     await Future.delayed(const Duration(seconds: 2));
     setState(() {
       items.add('item 1');
