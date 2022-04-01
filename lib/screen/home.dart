@@ -46,6 +46,7 @@ class _Home extends State<Home> {
                     isLoading = true;
                   });
                 }
+                return true;
               },
               child: ListView.builder(
                 itemCount: items.length,
