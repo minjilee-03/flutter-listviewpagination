@@ -16,13 +16,13 @@ class _Home extends State<Home> {
     'item2',
   ];
 
-  bool isLoading = false;
+  bool _isLoading = false;
 
-  Future _loadData() async {
-    await Future.delayed(const Duration(seconds: 2));
+  _loadData() async {
+    await Future.delayed(const Duration(milliseconds: 500));
     setState(() {
-      items.addAll(['item 1']);
-      isLoading = false;
+      items.add('item ${items.length + 1}');
+      _isLoading = !_isLoading;
     });
   }
 
@@ -37,15 +37,16 @@ class _Home extends State<Home> {
           Expanded(
             child: NotificationListener<ScrollNotification>(
               onNotification: (ScrollNotification scrollInfo) {
-                if (!isLoading &&
+                if (!_isLoading &&
                     scrollInfo.metrics.pixels ==
                         scrollInfo.metrics.maxScrollExtent) {
                   _loadData();
                   // start loading data
                   setState(() {
-                    isLoading = true;
+                    _isLoading = !_isLoading;
                   });
                 }
+                return true;
               },
               child: ListView.builder(
                 itemCount: items.length,
@@ -58,7 +59,7 @@ class _Home extends State<Home> {
             ),
           ),
           Container(
-            height: isLoading ? 50.0 : 0,
+            height: _isLoading ? 50.0 : 0,
             color: Colors.transparent,
             child: const Center(
               child: CircularProgressIndicator(),
