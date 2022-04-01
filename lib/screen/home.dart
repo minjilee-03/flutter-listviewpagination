@@ -19,9 +19,9 @@ class _Home extends State<Home> {
   bool _isLoading = false;
 
   _loadData() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(milliseconds: 500));
     setState(() {
-      items.add('item 1');
+      items.add('item ${items.length + 1}');
       _isLoading = !_isLoading;
     });
   }
